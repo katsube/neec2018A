@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8">
+	<title>Gacha</title>
+</head>
+<body>
+	<div id="canvas"></div>
+	<form>
+		<button id="btn" type="button">Drop</button>
+	</form>
+
+	<script>
+		var btn = document.querySelector("#btn");
+		btn.addEventListener("click", function(){
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "/gacha/drop.php", false);
+			xhr.onload =function(){
+				var response = xhr.responseText;
+				var json     = JSON.parse(response);
+
+				var canvas = document.querySelector("#canvas");
+				canvas.innerHTML = "<img src='image/" + json["id"] +".png'><br>"+json["name"];
+			}
+			xhr.send();
+		});
+	</script>
+</body>
+</html>
