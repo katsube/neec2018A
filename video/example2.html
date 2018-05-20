@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>動画を再生＞JSから操作</title>
+</head>
+<body>
+	<video id="meat" width="600" height="337">
+		<source src="movie/meat.mp4" type="video/mp4">
+	</video>
+
+	<form>
+		<button id="back"       type="button">←</button>
+		<button id="play"       type="button">Play</button>
+		<button id="skip"       type="button">→</button>
+		<button id="volumeup"   type="button">↑</button>
+		<button id="volumedown" type="button">↓</button>
+		<button id="Mute"       type="button">Mute</button>
+	</form>
+
+	<script>
+		window.onload = () => {
+			//video要素
+			let meat = document.querySelector("#meat");
+
+			//再生ボタン
+			let btnPlay = document.querySelector("#play");
+			btnPlay.addEventListener("click", function(){
+				meat.play();
+			});
+		};
+
+		//------------------------------------------------------
+		//ToDo1: Playボタンに機能追加
+		//------------------------------------------------------
+		// 1. Playボタンをクリックすると再生、Pauseボタンに変更
+		// 2. Pauseボタンをクリックすると停止、Playボタンに変更
+		// ※ボタン上に表示されている文字を変更するには、btnPlay.innerHTMLプロパティに代入する
+		// ※一時停止は pause();
+
+		//------------------------------------------------------
+		//ToDo2: 他のボタンを作ってみよう
+		//------------------------------------------------------
+		// skip (3秒戻る)
+		// back (3秒進む)
+		//    ※シークは currentTimeプロパティを参照/代入する。単位は秒
+		//    ※ファイルの全体の再生時間はdurationプロパティで取得できる。
+		// volumeup (+0.2)
+		// volumedown (-0.2)
+		//    ※音量は volumeプロパティを参照/代入する。0〜1.0の範囲で指定(小数点)
+		// mute (無音)
+		//    ※muted()メソッドを利用。meat.volumu=0でも同様の効果は得られる
+	</script>
+</body>
+</html>

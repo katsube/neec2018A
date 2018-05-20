@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>動画を再生＞JSのみ＆事前ロード</title>
+</head>
+<body>
+
+	<video id="meat" width="600" height="337" preload="auto">
+		<source src="movie/meat.mp4" type="video/mp4">
+	</video>
+
+	<form>
+		<button id="start" type="button" disabled>再生スタート</button>
+	</form>
+
+	<script>
+		window.onload = () => {
+			let meat = document.querySelector("#meat");
+			meat.addEventListener("loadedmetadata", () => {
+				alert("肉の読み込みが完了しました！");
+
+				//再生ボタンのイベント設定
+				let btnStart = document.querySelector("#start");
+				btnStart.addEventListener("click", () => {
+					meat.play();
+				});
+
+				//再生ボタンを有効に
+				btnStart.removeAttribute("disabled");
+			});
+		};
+
+		//------------------------------------------------------
+		// ToDo: ユーザービリティを向上しよう
+		//------------------------------------------------------
+		// 1. 読み込んでいる最中は画像(image/loading.gif)を表示しよう
+		// 2. 読み込みが完了したらSE(../audio/sound/se/内のファイルのいずれか)を再生しよう
+		//      ※SEの再生には事前に読み込みが完了していないとタイミングがあいません
+
+		//------------------------------------------------------
+		// 実行時の注意
+		//------------------------------------------------------
+		// セキュリティの関係でファイルをブラウザで直接開くと動作しない場合がある。
+		// その場合はWebサーバを通すと動作する
+	</script>
+</body>
+</html>
