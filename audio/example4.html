@@ -3,23 +3,41 @@
 <head>
 	<meta charset="utf-8">
 	<title>BGMを再生＞JSのみ＆事前ロード</title>
+
+	<style>
+		#start{ display: none; }	/* MP3がロードされるまでボタンを非表示 */
+	</style>
 </head>
 <body>
 
-<script src="js/jquery.min.js"></script>
+<form>
+	<button id="start" type="button">再生スタート</button>
+</form>
+
 <script>
-$(document).ready(function(){
-	var bear = new Audio("sound/bgm/bearintheforest.mp3");
-
-	$(bear).on("canplaythrough", function(){				//jQueryの機能を使用しない場合は、bear.addEventListener("canplaythrough", function(){...});
+window.onload = () => {
+	let bear = new Audio("sound/bgm/bearintheforest.mp3");
+	bear.addEventListener("canplaythrough", () => {
 		alert("森のくまさんの読み込みが完了しました！");
-		bear.play();
-	});
 
-	//ToDo
-	// 複数の音源をすべて読み込み終わったら、森のくまさんを再生する
-	//  homura.mp3, eikyuu_kikan_ningen.mp3
-});
+		//再生ボタンを表示
+		let btnStart = document.querySelector("#start");
+		btnStart.style.display = "block";
+
+		//再生ボタンのイベント設定
+		btnStart.addEventListener("click", () => {
+			bear.play();
+		});
+	});
+};
+
+//------------------------------------------------------
+// ToDo: ユーザービリティを向上しよう
+//------------------------------------------------------
+// 1. 読み込んでいる最中は画像(image/loading.gif)を表示しよう
+// 2. 読み込みが完了したらSE(sound/se/内のファイルのいずれか)を再生しよう
+//      ※SEの再生には事前に読み込みが完了していないとタイミングがあいません
+
 </script>
 </body>
 </html>

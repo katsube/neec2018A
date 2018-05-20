@@ -12,30 +12,45 @@
 	1 <input type="text" id="bear1time">Sec<br>
 	2 <input type="text" id="bear2time">Sec<br>
 	3 <input type="text" id="bear3time">Sec
+
+	<p><button id="start" type="button">輪唱スタート</button></p>
 </form>
 
-<audio id="bear1" src="sound/bgm/bearintheforest.mp3" autoplay></audio>
+<audio id="bear1" src="sound/bgm/bearintheforest.mp3"></audio>
 <audio id="bear2" src="sound/bgm/bearintheforest.mp3"></audio>
 <audio id="bear3" src="sound/bgm/bearintheforest.mp3"></audio>
 
-<script src="js/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-	$("#bear1")
-		.on("timeupdate", function(){
-			var bear = document.getElementById("bear1");		//jQueryを使う場合は$("#bear1").get(0);
-			var cur  = bear.currentTime;			
+window.onload = () => {
+	//------------------------------------
+	//輪唱処理
+	//------------------------------------
+	let aroundSing = () => {
+		let bear1   = document.querySelector("#bear1");
+		bear1.play();
 
-			$("#bear1time").val(cur);
-
-			//ToDo
-			// 輪唱を実装しよう			
+		let txtbox1 = document.querySelector("#bear1time");
+		bear1.addEventListener("timeupdate", () => {
+			let cur1 = bear1.currentTime;			//現在の再生時間を取得
+			txtbox1.setAttribute("value", cur1);	//テキストボックスの内容を変更
 		});
-	
-	//ToDo 
-	// Bear2, Bear3の再生時間をテキストボックスに表示しよう
+	};
 
-});
+	//------------------------------------
+	//輪唱スタート
+	//------------------------------------
+	document.querySelector("#start").addEventListener("click", aroundSing);
+};
+
+//------------------------------------------------------
+//ToDo1: 輪唱を実装しよう
+//------------------------------------------------------
+// 3秒経過したらbear2再生
+// さらに3秒経過したらbear3を再生
+
+//------------------------------------------------------
+//ToDo2: Bear2, Bear3の再生時間をテキストボックスに表示しよう
+//------------------------------------------------------
 </script>
 </body>
 </html>
