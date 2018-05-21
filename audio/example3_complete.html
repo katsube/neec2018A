@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>BGMを再生＞イベント処理</title>
+</head>
+<body>
+
+<h1>輪唱</h1>
+
+<form>
+	1 <input type="text" id="bear1time">Sec<br>
+	2 <input type="text" id="bear2time">Sec<br>
+	3 <input type="text" id="bear3time">Sec
+
+	<p><button id="start" type="button">輪唱スタート</button></p>
+</form>
+
+<audio id="bear1" src="sound/bgm/bearintheforest.mp3"></audio>
+<audio id="bear2" src="sound/bgm/bearintheforest.mp3"></audio>
+<audio id="bear3" src="sound/bgm/bearintheforest.mp3"></audio>
+
+<script>
+window.onload = () => {
+	//------------------------------------
+	//輪唱処理
+	//------------------------------------
+	let aroundSing = () => {
+		let bear1   = document.querySelector("#bear1");
+		let bear2   = document.querySelector("#bear2");
+		let bear3   = document.querySelector("#bear3");
+		bear1.play();
+
+		let txtbox1 = document.querySelector("#bear1time");
+		let txtbox2 = document.querySelector("#bear2time");
+		let txtbox3 = document.querySelector("#bear3time");
+
+		bear1.addEventListener("timeupdate", () => {
+			let cur1 = bear1.currentTime;			//現在の再生時間を取得
+			let cur2 = bear2.currentTime;
+			let cur3 = bear3.currentTime;
+
+			txtbox1.setAttribute("value", cur1);	//テキストボックスの内容を変更
+			txtbox2.setAttribute("value", cur2);	//テキストボックスの内容を変更
+			txtbox3.setAttribute("value", cur3);	//テキストボックスの内容を変更
+
+			if(cur1 >= 3 && cur2 == 0){
+				bear2.play();
+			}
+			if(cur1 >= 6 && cur3 == 0){
+				bear3.play();
+			}
+		});
+	};
+
+	//------------------------------------
+	//輪唱スタート
+	//------------------------------------
+	document.querySelector("#start").addEventListener("click", aroundSing);
+};
+
+//------------------------------------------------------
+//ToDo1: 輪唱を実装しよう
+//------------------------------------------------------
+// 3秒経過したらbear2再生
+// さらに3秒経過したらbear3を再生
+
+//------------------------------------------------------
+//ToDo2: Bear2, Bear3の再生時間をテキストボックスに表示しよう
+//------------------------------------------------------
+</script>
+</body>
+</html>
+
