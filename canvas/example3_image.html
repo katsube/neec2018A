@@ -9,17 +9,16 @@
 
 <canvas id="sample" width="600" height="500"></canvas>
 
-<script src="js/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-	var canvas = $("#sample").get(0);
-	var ctx    = canvas.getContext('2d');
+window.onload = () => {
+	const canvas = document.querySelector("#sample");
+	const ctx    = canvas.getContext('2d');
 
-	var image = new Image();
-	image.src = "image/food.png";
-	image.onload = function() {
+	const image  = new Image();
+	image.src    = "image/food.png";
+	image.onload = () => {
 		ctx.drawImage(image, 0, 0);				//drawImage(image, dx, dy)
-		
+
 		/*
 		ctx.drawImage(image, 0, 150, 100, 50);	//drawImage(dx, dy, dw, dh)
 		ctx.drawImage(image,
@@ -30,7 +29,7 @@ $(document).ready(function(){
 		);
 		*/
 	}
-});
+};
 </script>
 </body>
 </html>

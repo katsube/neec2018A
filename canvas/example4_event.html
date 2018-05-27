@@ -9,13 +9,29 @@
 
 <canvas id="sample" width="600" height="500"></canvas>
 
-<script src="js/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-	var canvas = $("#sample").get(0);
-	var ctx    = canvas.getContext('2d');
+class Util{
+	constructor(id){
+		this._element = document.querySelector(id);
+	}
+	attr(name, value){
+		this._element.setAttribute(name, value);
+		return(this);
+	}
+	on(event, callback){
+		this._element.addEventListener(event, callback);
+		return(this);
+	}
+	focus(){
+		this._element.focus();
+		return(this);
+	}
+}
 
-	$(canvas)
+window.onload = () => {
+	const canvas = new Util("#sample");
+
+	canvas
 		.attr("tabindex", 0)				//onkeyup/onkeydownを使用する時に必要
 		.focus()
 		.on("click", function(e){
@@ -48,7 +64,7 @@ $(document).ready(function(){
 		.on("keyup", function(e){
 			console.log("keyup", e);
 		});
-});
+};
 </script>
 </body>
 </html>

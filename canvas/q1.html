@@ -9,10 +9,9 @@
 
 <canvas id="sample" width="600" height="500"></canvas>
 
-<script src="js/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-	var canvas = $("#sample").get(0);
+window.onload = () => {
+	const canvas = document.querySelector("#sample");
 
 	//ToDo 1
 	//  Canvasに画像(image/food.png)を表示する
@@ -26,7 +25,7 @@ $(document).ready(function(){
 
 	//ToDo 3
 	// 移動するタイミングでSEを鳴らしてみよう
-});
+};
 </script>
 </body>
 </html>

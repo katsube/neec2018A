@@ -10,23 +10,22 @@
 <canvas id="sample" width="600" height="500"></canvas>
 
 <form>
-	<button id="start" disabled>START</button>
-	<button id="stop">STOP</button>
+	<button id="start" type="button" disabled>START</button>
+	<button id="stop" type="button">STOP</button>
 </form>
 
-<script src="js/jquery.min.js"></script>
 <script>
 var ANIMATION_ID;
-$(document).ready(function(){
-	var canvas = $("#sample").get(0);
-	var ctx    = canvas.getContext('2d');
+window.onload = () => {
+	const canvas = document.querySelector("#sample");
+	const ctx    = canvas.getContext('2d');
 
-	var x = 0;
-	var y = 0;
-	var step = 3;
-	var image = new Image();
+	let x = 0;
+	let y = 0;
+	let step = 3;
+	let image = new Image();
 	image.src = "image/food.png";
-	image.onload = function() {
+	image.onload = () => {
 		 update();
 	};
 
@@ -42,7 +41,7 @@ $(document).ready(function(){
 
 		//画像を描画
 		ctx.drawImage(image, x, y);
-		
+
 		//方向の調整
 		if( (x >= (canvas.width-image.width)) || (x < 0) ){		// 毎回Canvasと画像サイズを参照するので、本来は別の変数などに入れる
 			step *= -1;
@@ -55,31 +54,25 @@ $(document).ready(function(){
 	//-----------------------------------------
 	// STOPボタン
 	//-----------------------------------------
-	$("#stop").on("click", function(e){
+	document.querySelector("#stop").addEventListener("click", (e)=>{
 		//アニメーションを停止
 		window.cancelAnimationFrame(ANIMATION_ID);
-		
-		//STARTボタンを有効にする
-		$("#start").removeAttr("disabled");
 
-		//次の画面に遷移するのキャンセル
-		return(false);
+		//STARTボタンを有効にする
+		document.querySelector("#start").removeAttribute("disabled");
 	});
 
 	//-----------------------------------------
 	// STARTボタン
 	//-----------------------------------------
-	$("#start").on("click", function(e){
+	document.querySelector("#start").addEventListener("click", (e)=>{
 		//アニメーションを再開する
 		update();
 
 		//STARTボタンを無効にする
-		$(this).attr("disabled", true);
-
-		//次の画面に遷移するのキャンセル
-		return(false);
+		document.querySelector("#start").setAttribute("disabled", true);
 	});
-});
+};
 </script>
 </body>
 </html>

@@ -9,11 +9,10 @@
 
 <canvas id="sample" width="600" height="500"></canvas>
 
-<script src="js/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-	var canvas = $("#sample").get(0);
-	var ctx    = canvas.getContext('2d');
+window.onload = () => {
+	const canvas = document.querySelector("#sample");
+	const ctx    = canvas.getContext('2d');
 
 	/*----------------------*/
 	/*       線を描く        */
@@ -39,8 +38,8 @@ $(document).ready(function(){
 	//ctx.strokeStyle = "blue";					//線の色：青
 	//ctx.lineWidth   = 5;						//線の幅
 	ctx.fill();
-	ctx.stroke();	
-});
+	ctx.stroke();
+};
 </script>
 </body>
 </html>
