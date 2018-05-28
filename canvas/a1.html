@@ -10,17 +10,22 @@
 <canvas id="sample" width="600" height="500"></canvas>
 
 <script>
+var ANIMATION_ID;
 window.onload = () => {
 	const canvas = document.querySelector("#sample");
 	const ctx    = canvas.getContext('2d');
 
 	//ToDo 1
 	//  Canvasに画像(image/food.png)を表示する
+	let x = 0;
+	let y = 0;
+
 	const image  = new Image();
 	image.src    = "image/food.png";
 	image.onload = () => {
-		ctx.drawImage(image, 0, 0);				//drawImage(image, dx, dy)
+		ctx.drawImage(image, x, y);				//drawImage(image, dx, dy)
 	}
+
 
 	//ToDo 2
 	//  キーボードを押すとそれに連動して画像を移動させる
@@ -29,8 +34,45 @@ window.onload = () => {
 	//  s = 下
 	//  d = 右
 
-	//ToDo 3
-	// 移動するタイミングでSEを鳴らしてみよう
+	const se = new Audio("sound/se_foot_short.mp3");
+	canvas.setAttribute("tabindex", 0);
+	canvas.focus();
+	canvas.addEventListener("keydown",  (e) => {
+		const step_x = 15;
+		const step_y = 15;
+		let   key  = e.keyCode;
+		console.log(key);
+
+		switch(key){
+			case 87:	//w
+				update(0, step_y*-1);
+				break;
+			case 65:	//a
+				update(step_x*-1, 0);
+				break;
+			case 83:	//s
+				update(0, step_y);
+				break;
+			case 68:	//d
+				update(step_x, 0);
+				break;
+		}
+	});
+
+	function update(add_x, add_y){
+		x += add_x;
+		y += add_y;
+
+		// Canvas全体をクリア
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+		//画像を描画
+		ctx.drawImage(image, x, y);
+
+		//ToDo 3
+		// 移動するタイミングでSEを鳴らしてみよう
+		se.play();
+	}
 };
 </script>
 </body>
