@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>Canvas</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="sample" width="600" height="500"></canvas>
+
+<script>
+window.onload = () => {
+	const canvas = document.querySelector("#sample");
+	const ctx    = canvas.getContext('2d');
+
+	//ToDo 1
+	//  Canvasに画像(image/food.png)を表示する
+	const image  = new Image();
+	image.src    = "image/food.png";
+	image.onload = () => {
+		ctx.drawImage(image, 0, 0);				//drawImage(image, dx, dy)
+	}
+
+	//ToDo 2
+	//  キーボードを押すとそれに連動して画像を移動させる
+	//  w = 上
+	//  a = 左
+	//  s = 下
+	//  d = 右
+
+	//ToDo 3
+	// 移動するタイミングでSEを鳴らしてみよう
+};
+</script>
+</body>
+</html>
