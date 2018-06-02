@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>JSでCookieを取得</title>
+</head>
+<body>
+
+<div id="status">
+	...Cookieの取得中
+</div>
+
+<script>
+window.onload = () => {
+	let cookies = document.cookie.split(';');  //a=val;b=val ...
+	let html    = '';
+	for(let i=0; i<cookies.length; i++){
+		let [name, value] = cookies[i].split('=');
+		html += decodeURIComponent(name) + ":" + decodeURIComponent(value) + "<br>\n";
+	}
+
+	document.querySelector("#status").innerHTML = "<h2>Cookie一覧</h2>\n" + html;
+}
+</script>
+</body>
+</html>

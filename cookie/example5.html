@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>JSでCookieを削除</title>
+</head>
+<body>
+
+<div id="status">
+	...Cookieの削除中
+</div>
+
+<script>
+window.onload = () => {
+	document.cookie = 'foo=; max-age=0';
+	removeEnd();
+}
+
+function removeEnd(){
+	let html =    '<h2>Cookieを削除しました!</h2>'
+				+ '<p><a href="confirm.php">確認する</a></p>';
+
+	document.querySelector("#status").innerHTML = html;
+}
+
+</script>
+</body>
+</html>

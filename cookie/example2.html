@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>JSでCookieをセット</title>
+</head>
+<body>
+
+<div id="status">
+	...Cookieの設定中
+</div>
+
+<script>
+window.onload = () => {
+	document.cookie = 'foo=' + encodeURIComponent('こんにちは');
+	writeEnd();
+}
+
+function writeEnd(){
+	let html =    '<h2>Cookieを書き込みました!</h2>'
+				+ '<p><a href="confirm.php">確認する</a></p>';
+
+	document.querySelector("#status").innerHTML = html;
+}
+</script>
+</body>
+</html>
