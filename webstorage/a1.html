@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>ToDoアプリ</title>
+	<style>
+		h2{
+			margin-bottom: 3px;
+		}
+		#tasklist, #tasklist td, #tasklist th{
+			border: 1px solid gray;
+			padding: 5px;
+		}
+		#tasklist th{
+			background-color: gray;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+
+<h1>ToDoアプリ</h1>
+
+<h2>新規登録</h2>
+<form>
+	<input type="text" id="newtask">
+	<button id="btn-add" type="button">登録</button>
+</form>
+
+<h2>タスク一覧</h2>
+<table>
+<thead>
+	<tr>
+		<th>タスク名</th><th>登録日</th>
+	</tr>
+</thead>
+<tbody id="tasklist">
+	<tr>
+		<td>サンプル</td><td>2018年6月4日 10:00:00</td>
+	</tr>
+</tbody>
+</table>
+
+<script>
+window.onload = () => {
+	let task = localStorage.getItem("task");
+	if(task){
+		let json = JSON.parse(task);
+		for(let i=0; i<json.length; i++){
+			insertTask(json[i][0], json[i][1]);
+		}
+	}
+	else{
+		task = [];
+	}
+
+	const btnAdd = document.querySelector("#btn-add");
+	btnAdd.addEventListener("click", ()=>{
+		const name     = document.querySelector("#newtask");
+		let   taskname = name.value;
+
+		const now = new Date();
+		let   registdate =    now.getFullYear()
+							+ "年" + (now.getMonth()+1)
+							+ "月" + now.getDate()
+							+ "日 " + now.getHours()
+							+ ":" + now.getMinutes()
+							+ ":" + now.getSeconds();
+		insertTask(taskname, registdate);
+		task.push([taskname, registdate]);
+		localStorage.setItem("task", JSON.stringify(task));
+	});
+
+	function insertTask(taskname, registdate){
+		const table = document.querySelector("#tasklist");
+		let   html  = table.innerHTML;
+		table.innerHTML = html + `<tr><td>${taskname}</td><td>${registdate}</td></tr>`;
+	}
+
+	//------------------------------------------
+	// ToDo 1
+	//------------------------------------------
+	// 「登録」ボタンを押したら、「タスク一覧」に追加しよう
+	// その際に以下も実装してみましょう。
+	//    - テキストボックスが未入力の場合はアラート(alert())を表示し登録しない
+	//    - タスク一覧に追加したらテキストボックスは空にする
+
+	//------------------------------------------
+	// ToDo 2
+	//------------------------------------------
+	// タスクはlocalStorageにも保存しましょう。
+	// 初回ロード時、すでにタスクが存在する場合は「タスク一覧」に最初から
+	// 表示してみましょう。
+
+	//------------------------------------------
+	// ToDo 3
+	//------------------------------------------
+	// 登録済みのタスクを削除する機能を追加してみましょう
+	// ・削除
+	//   登録日の横に「削除」列を追加。
+	//   ボタン押下で確認ダイアログ(confirm())を表示し、
+	//  「はい」ボタンが押下された場合はタスクリストから削除し、
+	//   localStorageからも削除する。
+}
+</script>
+</body>
+</html>
