@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf8">
+<title>Socket.IO chat</title>
+<style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+</style>
+</head>
+<body>
+
+<!-- チャットメッセージ表示 -->
+<ul id="messages"></ul>
+
+<!-- 入力フォーム -->
+<form id="form1">
+	<input id="msg" autocomplete="off" /><button>送信</button>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+window.onload = () => {
+	let socket = io();
+
+	//------------------------------------
+	// メッセージ送信
+	//------------------------------------
+	document.querySelector("#form1").addEventListener("submit", (e)=>{
+		//画面を遷移させない
+		e.preventDefault();
+
+		//サーバに送信
+		let msg = document.querySelector("#msg");
+		socket.emit('chat message', msg.value);
+
+		//テキストボックスを空にする
+		msg.value = "";
+	});
+
+	//------------------------------------
+	// メッセージ受信
+	//------------------------------------
+	socket.on('chat message', (msg)=>{
+		let messages = document.querySelector("#messages");
+		let html     = messages.innerHTML;
+		messages.innerHTML = html + `<li>${msg}</li>`;
+	});
+}
+</script>
+</body>
+</html>

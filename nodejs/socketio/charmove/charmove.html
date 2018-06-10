@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf8">
+<title>Socket.IO CharMove</title>
+<style>
+	#char{
+		position: relative;
+		top:0px;
+		left: 0px;
+	}
+</style>
+</head>
+<body>
+
+<img id="char" src="/image/food.png">
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+window.onload = () => {
+	let socket = io();
+
+	//----------------------------------
+	// サーバにイベントを送信
+	//----------------------------------
+	document.querySelector("body").addEventListener("keypress", (e)=>{
+		let keycd = e.keyCode;
+
+		//ToDo: 処理を記述する
+		// Socket.ioが発行したセッションIDは socket.id で参照できる
+	});
+
+	//----------------------------------
+	// サーバからイベントを受信
+	//----------------------------------
+	socket.on('movechar', (data)=>{
+		//ToDo: 処理を記述する
+		// Socket.ioが発行したセッションIDは socket.id で参照できる
+	});
+}
+
+/**
+ * キャラを移動する関数
+ */
+ function moveChar(keycd){
+	let element = document.querySelector("#char");
+
+	// キャラの現在位置を取得
+	let pos = getPosition(element);
+
+	//アニメーション時間を指定
+	element.style.transition = '0.5s';
+
+	//ToDo: キャラを移動させる処理を記述する
+	// element.style.transform = `translate(X座標,Y座標)`;		//座標の値は "100px" など最後に"px"をつける
+
+}
+
+/**
+ * 指定オブジェクトの座標を返却する
+ */
+function getPosition(element){
+	let rect = element.getBoundingClientRect();
+	let body = document.querySelector("body").getBoundingClientRect();
+	return({
+		  x: Math.ceil(rect.x - body.x)
+		, y: Math.ceil(rect.y - body.y)
+	});
+}
+</script>
+</body>
+</html>
