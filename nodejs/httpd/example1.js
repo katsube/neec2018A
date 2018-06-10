@@ -23,7 +23,3 @@ http.listen(port, ()=>{
 app.get('/', (req, res)=>{
   res.sendFile(__dirname + '/example1.html');
 });
-
-app.get('/hello', (req, res)=>{
-  res.send('<h1>HelloWorld</h1>');
-});

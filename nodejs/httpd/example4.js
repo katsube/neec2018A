@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 //--------------------------------------
 //ファイルを返却
 app.get('/', (req, res)=>{
-  res.sendFile(__dirname + '/example3.html');
+  res.sendFile(__dirname + '/example4.html');
 });
 
 //任意の文字列を返却
