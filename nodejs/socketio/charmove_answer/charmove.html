@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf8">
+<title>Socket.IO CharMove</title>
+<style>
+	#char{
+		position: relative;
+		top:0px;
+		left: 0px;
+	}
+</style>
+</head>
+<body>
+
+	<img id="char" src="/image/food.png">
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+window.onload = () => {
+	let socket = io();
+
+	document.querySelector("body").addEventListener("keypress", (e)=>{
+		// キーが押されたときの処理を記述
+		let keycd = e.keyCode;
+
+		// 自分の画面を動かす
+		moveChar(keycd);
+
+		//サーバに送信
+		socket.emit('movechar', {sid:socket.id, key:keycd});
+	});
+
+	socket.on('movechar', (data)=>{
+		// サーバからのイベントを受けた際の処理を記述
+		if( socket.id !== data.sid){
+			moveChar(data.key);
+		}
+	});
+}
+
+
+/**
+ * キャラを移動する関数
+ */
+ function moveChar(way){
+	let element = document.querySelector("#char");
+	let step    = 80;
+
+	// キャラの現在位置を取得
+	let pos = getPosition(element);
+
+	//アニメーション時間を指定
+	element.style.transition = '0.5s';
+
+	switch(way){
+		case 119:  //W ↑
+			element.style.transform = `translate(${pos.x}px,${pos.y-step}px)`;
+			break;
+
+		case 97:   //A ←
+			element.style.transform = `translate(${pos.x-step}px,${pos.y}px)`;
+			break;
+
+		case 115:  //S ↓
+			element.style.transform = `translate(${pos.x}px,${pos.y+step}px)`;
+			break;
+
+		case 100:  //D →
+			element.style.transform = `translate(${pos.x+step}px,${pos.y}px)`;
+			break;
+
+		default:
+			console.log(way);
+			break;
+	}
+}
+
+function getPosition(element){
+	let rect = element.getBoundingClientRect();
+	let body = document.querySelector("body").getBoundingClientRect();
+	return({
+		  x: Math.ceil(rect.x - body.x)
+		, y: Math.ceil(rect.y - body.y)
+	});
+}
+</script>
+</body>
+</html>

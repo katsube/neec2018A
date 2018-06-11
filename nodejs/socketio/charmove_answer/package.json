@@ -1,0 +1,19 @@
+{
+  "name": "socketio-charmove",
+  "version": "0.0.1",
+  "description": "socket.io sample2",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "M.Katsube",
+  "license" : "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:katsube/neec2018A.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.2",
+    "socket.io": "^2.0.3"
+  }
+}
