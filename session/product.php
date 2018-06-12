@@ -1,6 +1,6 @@
 ﻿<?php
-$sessid = sha1(time());				// セッションIDを作成
-setcookie("sessionid", $sessid);	// CookieにセッションIDを食わせる
+$sessid = sha1(time());                 // セッションIDを作成(簡易版)
+setcookie("sessionid", $sessid);        // CookieにセッションIDを食わせる
 ?><!DOCTYPE html>
 <html>
 <head>
