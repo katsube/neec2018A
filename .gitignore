@@ -1,0 +1,33 @@
+##################################################
+# Gitの管理下に置きたくないファイルのパターン一覧
+##################################################
+
+#----------------------------------
+# Windows
+#----------------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+#----------------------------------
+# Mac
+#----------------------------------
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+#----------------------------------
+# node
+#----------------------------------
+node_modules/
+.npm
+.eslintcache
