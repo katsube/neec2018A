@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf8">
+<title>Socket.IO ServerPush</title>
+</head>
+<body>
+
+<!-- チャットメッセージ表示 -->
+<ul id="messages"></ul>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+window.onload = () => {
+	let socket = io();
+
+	//------------------------------------
+	// アラート
+	//------------------------------------
+	socket.on('alert by server', (msg)=>{
+		let messages = document.querySelector("#messages");
+		let html     = messages.innerHTML;
+		let now      = new Date();
+
+		messages.innerHTML = html + `<li>${msg} (${now.getHours()}:${now.getMinutes()}:${now.getSeconds()})</li>`;
+	});
+}
+</script>
+</body>
+</html>
