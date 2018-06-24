@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <title>a-frame</title>
+  <script src="/js/aframe.min.js"></script>
+</head>
+<body>
+
+<a-scene>
+  <a-assets>
+		<audio id="seclick"   src="/sound/click.ogg" preload></audio>
+		<img   id="citybg"    src="/img/bg360_city.jpg">
+		<img   id="cubesbg"   src="/img/bg360_cubes.jpg">
+		<img   id="secheltbg" src="/img/bg360_sechelt.jpg">
+  </a-assets>
+
+  <a-box      id="box"      class="btn-selector" position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+  <a-sphere   id="sphere"   class="btn-selector" position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+  <a-cylinder id="cylinder" class="btn-selector" position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+
+  <a-sky id="sky" src="#citybg"></a-sky>
+
+  <a-camera>
+    <a-cursor id="cursor" fuse="true" fuseTimeout="1500"></a-cursor>
+  </a-camera>
+</a-scene>
+
+<script>
+  //-------------------------------------------------------
+  // ToDo: イメージセレクターを作る
+  //-------------------------------------------------------
+  // box, sphere, cylinderにカーソルを合わせると、
+  // それぞれ違った背景画像に切り替わるようなJSを書いてみましょう。
+  //
+  // ■ヒント
+  // イベント名は以下の通り。
+  //    mouseenter カーソルが乗った
+  //    mouseleave カーソルが離れた
+  //    click      選択された
+  //
+  // カーソルが選択されるまでの遅延時間はfuseTimeout属性で指定できます。
+  //   <a-cursor id="cursor" fuse="true" fuseTimeout="1500">
+  //
+  // カーソルが選択された際にはSEを再生してみましょう。
+  // ユーザービリティが向上します。
+</script>
+
+</body>
+</html>

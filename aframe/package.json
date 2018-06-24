@@ -1,0 +1,14 @@
+{
+  "name": "aframe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Makito Katsube <katsubemakito@gmail.com> (http://github.com/katsube)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
