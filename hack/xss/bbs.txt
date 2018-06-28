@@ -1,11 +1,2 @@
 太郎	ほげほげほげほげほげほげほげほげほげ	2018-07-02 12:00:00
 花子	ふがふがふがふがふがふがふがふがふが	2018-07-02 13:00:00
-あああああ	bar	2018-06-29 02:25:19
-あああああ	bar	2018-06-29 02:26:08
-あああああ	bar	2018-06-29 02:26:34
-あああああ	bar	2018-06-29 02:26:43
-あああああ	<a href='http://www.mcdonalds.co.jp/campaign/archive/2017/chickentatsuta/'>チキンタツタ</a>美味しい！ 一番好きなバーガーです！<br>	2018-06-29 02:31:08
-あああああ	<a href='http://www.mcdonalds.co.jp/campaign/archive/2017/chickentatsuta/'>チキンタツタ</a>美味しい！ 一番好きなバーガーです！<br><img src='../csrf/image/chickentatsuta.png'>	2018-06-29 02:33:32
-あああああ	<a href='http://www.mcdonalds.co.jp/campaign/archive/2017/chickentatsuta/'>チキンタツタ</a>美味しい！ 一番好きなバーガーです！<br><img src='../csrf/image/chickentatsuta.png'><br>	2018-06-29 02:33:56
-aaaa	aaaaa	2018-06-29 02:36:30
-aaaa	<a href='http://www.mcdonalds.co.jp/campaign/archive/2017/chickentatsuta/'>チキンタツタ</a>美味しい！ 一番好きなバーガーです！<br><img src='../csrf/image/chickentatsuta.png'><br>	2018-06-29 02:36:42
