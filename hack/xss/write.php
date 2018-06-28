@@ -3,7 +3,6 @@
  * 掲示板へ書き込む
  *
  **/
-
 require_once('define.php');
 
 //-------------------------------------
@@ -20,8 +19,8 @@ if( ! is_writable(DATA_FILE) ){
 //-------------------------------------
 // クエリーを取得
 //-------------------------------------
-$nickname = $_POST['nickname'];
-$message  = $_POST['message'];
+$nickname = $_REQUEST['nickname'];
+$message  = $_REQUEST['message'];
 
 // 処理上、問題のある文字を削除/変換
 $nickname = removeWhiteChar($nickname);

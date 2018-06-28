@@ -1,0 +1,19 @@
+/* フォント定義 */
+@font-face {
+	font-family: 'g_コミック古印体';
+	src: url('g_comickoin_freeB.ttf') format('TrueType');
+}
+
+h1{
+	font-family: 'g_コミック古印体';
+	color: white;
+}
+body{
+	background-color: black;
+	text-align: center;
+}
+
+/*
+   フォントは以下のサイトからお借りしています。
+   http://material.animehack.jp/font_gcomichorror.html
+ */

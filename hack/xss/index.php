@@ -17,7 +17,7 @@
 		<section>
 			<h2>投稿フォーム</h2>
 			<form id="newpost" action="write.php" method="POST">
-				<div><input type="text" name="nickname" id="nickname" placeholder="ニックネーム"></div>
+				<div><input type="text" name="nickname" id="nickname" placeholder="ニックネーム"  value="<?= $_COOKIE['nickname']; ?>"></div>
 				<div><textarea name="message" id="message" placeholder="メッセージ"></textarea></div>
 				<button class="btn btn-primary">書き込む</button>
 			</form>
@@ -54,19 +54,33 @@
 
 <script>
 window.onload = ()=>{
+	let nickname = document.querySelector("#nickname");
+	let message  = document.querySelector("#message");
+
 	/**
 	 * 「投稿フォーム」で送信イベントが発生したら
 	 */
 	document.querySelector("#newpost").addEventListener('submit', (e)=>{
+		// 入力チェック
+		if(nickname.value.length === 0 || message.value.length===0){
+			alert("ニックネームとメッセージは必須項目です");
+			e.preventDefault();		// 送信をキャンセル
+			return(false);
+		}
+
+		// 送信確認
 		if( ! confirm('本当にこの内容で書き込んで良いですか？') ){
 			e.preventDefault();		// 送信をキャンセル
-		}
+			return(false);
+ 		}
+
+		//Cookieにニックネームを書き込む
+		document.cookie = `nickname=${encodeURIComponent(nickname.value)}; max-age=${60*60*24*30};`;
 	});
 
 	/**
 	 * 「投稿フォーム」のテキストエリアにfocusされたら大きくする
 	 */
-	let message = document.querySelector("#message");
 	message.addEventListener('focus', ()=>{
 		message.style.height = "150px";
 	});
