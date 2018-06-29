@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ログインフォーム</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="login-page">
+
+	<div class="form">
+		<form class="login-form" id="login">
+			<input type="text" id="uid" placeholder="ID">
+			<input type="password" id="pw" placeholder="パスワード">
+			<button>ログイン</button>
+		</form>
+	</div>
+
+<script>
+window.onload = ()=>{
+	/**
+	 * 「ログイン」ボタン押下時のイベント
+	 */
+	document.querySelector("#login").addEventListener("submit", (e)=>{
+		// 画面遷移しない
+		e.preventDefault();
+
+		// 入力値を取得
+		let uid = document.querySelector("#uid").value;
+		let pw  = document.querySelector("#pw").value;
+
+		// APIと通信
+		let xhr = new XMLHttpRequest();
+		xhr.open('POST', `api.php`, false);
+		xhr.addEventListener('load', (e)=>{
+			let response = e.target.responseText;
+			let json = JSON.parse(response);
+
+			if( json.result == true){
+				alert("ログインに成功しました");
+			}
+			else{
+				alert(`ログインに失敗しました(${json.message})`);
+			}
+		});
+		xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+		xhr.send(`uid=${encodeURIComponent(uid)}&pw=${encodeURIComponent(pw)}`);
+	});
+}
+</script>
+
+</body>
+</html>

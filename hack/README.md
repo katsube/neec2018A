@@ -18,7 +18,18 @@
 * [IPA](https://www.ipa.go.jp/security/vuln/vuln_contents/oscmd.html)
 
 ## SQLインジェクション
+`lib.php`内にあるMySQLへログインする際のDB名やID/パスワードを自分の物に変更してください。また`setup.sql`内にあるSQLを実行する必要があります。
+
+以下のようなURLを作成してアクセスします。
+> http://(ドメイン)/sqlinj/?category=%27%20OR%20%27A%27=%27A
+
+categoryで指定している文字列は以下です。
+> ' OR 'A'='A
+
 * [IPA](https://www.ipa.go.jp/security/vuln/vuln_contents/sql.html)
 
 
 ## ブルートフォースアタック
+brute force attack。
+総当たり攻撃です。必ず*ローカル*で実行してください。
+
