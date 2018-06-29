@@ -14,6 +14,11 @@
 ## パラメーター汚染
 クエリのチェックを怠ると大変なことになる事例。実行前に`data/*.txt`のパーミションを`0666`などに設定してください。
 
-## SQLインジェクション
+## OSコマンドインジェクション
+* [IPA](https://www.ipa.go.jp/security/vuln/vuln_contents/oscmd.html)
 
+## SQLインジェクション
 * [IPA](https://www.ipa.go.jp/security/vuln/vuln_contents/sql.html)
+
+
+## ブルートフォースアタック
