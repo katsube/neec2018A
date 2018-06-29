@@ -19,7 +19,7 @@
 			<form id="newpost" action="write.php" method="POST">
 				<div><input type="text" name="nickname" id="nickname" placeholder="ニックネーム"  value="<?= $_COOKIE['nickname']; ?>"></div>
 				<div><textarea name="message" id="message" placeholder="メッセージ"></textarea></div>
-				<button class="btn btn-primary">書き込む</button>
+				<button>書き込む</button>
 			</form>
 		</section>
 		<!-- /書き込み用フォーム -->
